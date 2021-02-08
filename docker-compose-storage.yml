@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+  app:
+    image: $CI_REGISTRY_IMAGE/app:$TAG
+    volumes:
+      - /mnt/data2/public/:/data/
+    logging: &logging
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "1"

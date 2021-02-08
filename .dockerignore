@@ -1,0 +1,10 @@
+node_modules
+contrib
+coverage
+output
+npm-debug.log
+dist
+.git
+.cache
+.vscode
+pdfu-output

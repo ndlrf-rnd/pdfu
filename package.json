@@ -1,0 +1,119 @@
+{
+  "name": "@ndlrf/pdfu",
+  "version": "0.6.3",
+  "description": "NDLRF - PDF resources extraction and analysis toolset",
+  "tags": [
+    "pdf",
+	"pdf/a",
+	"ISO 32000",
+    "converter",
+    "document",
+    "extractor",
+	"resource carver",
+	"jpeg2000",
+    "orc",
+    "png",
+    "svg",
+    "veraPDF",
+	"The Russian National Electronic library",
+    "The Russian National Digital library",
+    "The Russian National Library",
+    "data integration",
+
+  ],
+  "license": "Apache-2.0",
+    "authors": [
+    {
+      "name": "National electronic library of Russian Federation",
+      "url": "https://rusneb.ru"
+    },
+    {
+      "name": "Russian state library",
+      "url": "https://rsl.ru"
+    }
+  ],
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ndlrf-rnd/pdfu.git"
+  },
+  "bin": {
+    "pdfu": "./bin/pdfu"
+  },
+  "directories": {
+    "bin": "bin",
+    "lib": "lib",
+    "src": "src",
+    "test": "src/__tests__"
+  },
+  "dependencies": {
+    "argparse": "1.0.10",
+    "canvas": "2.6.1",
+    "cwebp-bin": "5.1.0",
+    "ejs": "2.7.1",
+    "highwayhash": "2.5.0",
+    "hummus": "1.0.108",
+    "imagemin": "7.0.0",
+    "imagemin-jpeg-recompress": "6.0.0",
+    "imagemin-jpegtran": "6.0.0",
+    "imagemin-optipng": "7.1.0",
+    "imagemin-pngcrush": "6.0.0",
+    "imagemin-pngquant": "8.0.0",
+    "imagemin-webp": "5.1.0",
+    "js-yaml": "3.13.1",
+    "jsdom": "15.1.1",
+    "sharp": "0.23.3",
+    "lodash.defaults": "4.2.0",
+    "lodash.flatten": "4.4.0",
+    "lodash.isnil": "4.0.0",
+    "lodash.omit": "4.5.0",
+    "lodash.pick": "4.4.0",
+    "lodash.uniq": "4.5.0",
+    "mime-types": "2.1.24",
+    "mkdirp": "0.5.1",
+    "parse-numeric-range": "0.0.2",
+    "pdfjs": "2.3.3",
+    "pdfjs-dist": "2.3.200",
+    "png-to-jpeg": "1.0.1",
+    "superagent": "5.1.0",
+    "xml-js": "1.6.11"
+  },
+  "files": [
+    "dist/",
+    "lib/",
+    "src/",
+    "bin/",
+    "__tests__/"
+  ],
+  "devDependencies": {
+    "@babel/cli": "7.8.3",
+    "@babel/core": "7.8.3",
+    "@babel/preset-flow": "7.8.3",
+    "babel-eslint": "10.0.3",
+    "babel-jest": "25.1.0",
+    "eslint": "6.8.0",
+    "eslint-config-airbnb-base": "14.0.0",
+    "eslint-plugin-flowtype": "4.6.0",
+    "eslint-plugin-import": "2.20.0",
+    "eslint-plugin-jest": "23.6.0",
+    "flow-bin": "0.116.1",
+    "jest": "25.1.0"
+  },
+  "scripts": {
+    "lint": "eslint ./src",
+    "test": "jest ./src --coverage --passWithNoTests",
+    "ci": "npm run test && npm run lint && npm run build",
+    "himem": "node --max-old-space-size=8192 .",
+    "build": "npm run build:clean && npm run build:babel",
+    "build:contrib": "./scripts/install_contrib.sh",
+    "build:babel": "babel ./src -d ./lib",
+    "build:clean": "rm -rf ./lib",
+    "build:watch": "webpack --config ./webpack.config.js --watch",
+    "build:docker": "docker build --force-rm --no-cache -f ./Dockerfile -t pdfu:latest ."
+  },
+  "jest": {
+    "transform": {
+      ".+\\.jsx?$": "babel-jest.transformer.js"
+    }
+  }
+}

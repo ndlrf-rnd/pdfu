@@ -1,0 +1,15 @@
+<html lang="<%= lang %>">
+<head>
+    <meta charset="<%- encoding %>" />
+    <title><%= title %></title>
+    <meta name="viewport" content="width=<%= width %>, height=<%= height %>" />
+    <% styleSheets.forEach((styleSheet) => { %>
+        <link type="text/css" rel="stylesheet" href="<%- styleSheet %>" />
+    <% }) %>
+</head>
+<body style="width: <%= width %>px; height: <%= height %>px; margin: 0;">
+<%- areasStr || '' %>
+<%- textStr || '' %>
+<img src="<%- renderPath %>" style="margin-bottom: -<%- height - bbox.y1 %>px; margin-right: -<%- width - bbox.x1 %>px;" />
+</body>
+</html>

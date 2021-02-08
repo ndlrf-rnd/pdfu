@@ -1,0 +1,28 @@
+<html lang="<%= lang %>">
+<head>
+    <meta charset="<%- encoding %>" />
+    <title><%= title %></title>
+    <meta name="viewport" content="width=<%= bbox.x1 - bbox.x0 %>, height=<%= bbox.y1 - bbox.y0 %>" />
+    <% styleSheets.forEach((styleSheet) => { %><link type="text/css" rel="stylesheet" href="<%- styleSheet %>" /><% }) %>
+    <style>
+        .textLayer {
+            position: absolute;
+            overflow: hidden;
+            left: initial;
+            top: initial;
+            right: initial;
+            bottom: initial;
+            line-height: 1.0;
+        }
+    </style>
+</head>
+<body>
+<div style="overflow: hidden; width: <%- bbox.x1 - bbox.x0 %>px; height: <%- bbox.y1 - bbox.y0 %>px; ">
+    <div style="margin-left: -<%- bbox.x0 %>px;margin-top: -<%- bbox.y0 %>px;">
+        <%- textStr || '' %>
+        <%- svgStr || '' %>
+        <img src="<%- renderPath %>" style="margin-bottom: -<%- height - bbox.y1 %>px; margin-right: -<%- width - bbox.x1 %>px;" />
+    </div>
+</div>
+</body>
+</html>

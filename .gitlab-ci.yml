@@ -1,0 +1,37 @@
+stages:
+  - image-build
+  - deploy
+
+variables:
+    PROJECT_PREFIX: pdfu
+
+build-release:
+ stage: image-build
+ script:
+    - export COMMIT_TIME=$(git show -s --format=%ci $CI_COMMIT_SHA | sed 's/ +0000//g'| tr -d '\n' | awk '{print $1"-"$2}' | sed 's/:/-/g')
+    - echo $COMMIT_TIME
+    - export TAG=${COMMIT_TIME}
+    - echo $TAG
+    - docker-compose -p pdfu -f docker-compose-build.yml build
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+    - docker-compose -f docker-compose-build.yml push
+ only:
+    - release
+ tags:
+    - build-pdfu
+
+deploy_storage:
+  stage: deploy
+  environment:
+    name: prod/$CI_COMMIT_REF_SLUG
+    url: https://storage.rusneb.ru
+  script:
+    - export COMMIT_TIME=$(git show -s --format=%ci $CI_COMMIT_SHA | sed 's/ +0000//g'| tr -d '\n' | awk '{print $1"-"$2}' | sed 's/:/-/g')
+    - export TAG=${COMMIT_TIME}
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+    - docker-compose -p ${PROJECT_PREFIX}_${CI_COMMIT_REF_SLUG} -f docker-compose-storage.yml pull || exit 1
+    - docker-compose -p ${PROJECT_PREFIX}_${CI_COMMIT_REF_SLUG} -f docker-compose-storage.yml up -d --no-build
+  only:
+    - release
+  tags:
+    - release
