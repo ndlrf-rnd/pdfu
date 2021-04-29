@@ -1,28 +1,27 @@
 {
   "name": "@ndlrf/pdfu",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "description": "NDLRF - PDF resources extraction and analysis toolset",
   "tags": [
     "pdf",
-	"pdf/a",
-	"ISO 32000",
+    "pdf/a",
+    "ISO 32000",
     "converter",
     "document",
     "extractor",
-	"resource carver",
-	"jpeg2000",
+    "resource carver",
+    "jpeg2000",
     "orc",
     "png",
     "svg",
     "veraPDF",
-	"The Russian National Electronic library",
+    "The Russian National Electronic library",
     "The Russian National Digital library",
     "The Russian National Library",
-    "data integration",
-
+    "data integration"
   ],
   "license": "Apache-2.0",
-    "authors": [
+  "authors": [
     {
       "name": "National electronic library of Russian Federation",
       "url": "https://rusneb.ru"

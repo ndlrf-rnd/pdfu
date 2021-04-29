@@ -1,0 +1,9 @@
+#!/usr/bin/env node
+/**
+ * @fileOverview: pdfu entry point
+ */
+
+const Index = require('../src/index');
+
+Index.run();
+

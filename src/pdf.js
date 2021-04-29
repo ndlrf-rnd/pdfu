@@ -191,7 +191,7 @@ const exportPage = async (
         pageResult.textStr = textData.text;
         const textPath = path.join(outputDirectory, `${fileName}-text.${c.TEXT_EXTENSION}`);
         log(inputPdfPath, 'page', pageNumber, `extracted text path:\t${textPath}`);
-        fs.writeFileSync(textPath, textData.text);
+        fs.writeFileSync(textPath, textData.text.replace('\x02', ''));
 
         const testStatReport = o.text ? textStat(textData.text, { format: o.reportFormat }) : {};
         pageResult.report = {
