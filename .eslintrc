@@ -3,10 +3,9 @@
     "airbnb-base",
     "plugin:jest/recommended"
   ],
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
   "plugins": [
     "jest",
-    "flowtype"
   ],
   "env": {
     "jest": true,
