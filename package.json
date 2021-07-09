@@ -1,6 +1,6 @@
 {
   "name": "@ndlrf/pdfu",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "NDLRF - PDF resources extraction and analysis toolset",
   "tags": [
     "pdf",
@@ -29,12 +29,21 @@
     {
       "name": "Russian state library",
       "url": "https://rsl.ru"
+    },
+    {
+      "name": "Ilya Kutukov",
+      "url": "https://github.com/mrjj/",
+      "email": "i@leninka.ru"
     }
   ],
   "main": "src/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/ndlrf-rnd/pdfu.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ndlrf-rnd/pdfu/issues",
+    "email": "i@leninka.ru"
   },
   "bin": {
     "pdfu": "./bin/pdfu"

@@ -84,25 +84,29 @@ In case of low memory try running pdfu in high mem mode (node --max-old-space-si
 - [pngcrush](https://pngcrush.com/)
 - [veraPDF test corpora](https://github.com/veraPDF/veraPDF-corpus.git)
 
+
+
 ## License notes
 
-### pdfu
+## Лицензия и авторские права на PDFu
 
-This program is authored by [Ilya Kutukov](https://github.com/mrjj) ([i@leninka.ru](mailto:i@leninka.ru), [post.ilya@gmail.com](mailto:post.ilya@gmail.com)) and distributed under MIT License.
+### Russian
+Данные в этом репозиторри являются интеллектуальной собственности, относящейся к ФГИС "[Национальная электронная библиотека Российсокй Федерации](https://rusneb.ru)" (оператор: [Российская государственная библиотека](https://rsl.ru)) и размещены в публичный доступ на условиях описанных в типовой СПО лицензии [**Apache License 2.0**](LICENSE)
 
----
+### English
+All rights reserved 2019-2021 (c) [National electronic library of Russian Federation](https://rusneb.ru)
+This project's source code is licensed under the terms of Apache License 2.0.
 
-The MIT License (MIT)
 
-Copyright (c) 2019 Ilya Kutukov
+## Owl
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
----
+```
+   ◯  .       .        .           .     *     .
+ .  .     .      ___---===(OvO)===---___  .      °     *
+                  .              
+,~^~,   .      .     ◯         .            .      ,~^~^^                
+    ~^\$~^~~^#*~-^\_  __ _ _ _ _ ____/*-~^~~^^~^##~^~^
+```
 
 ### Imagemin
 
