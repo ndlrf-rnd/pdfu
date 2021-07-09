@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const hummus = require('hummus');
+const mkdirp = require('mkdirp');
 const {padLeft} = require("./utils/humanize");
 const {parseRanges} = require('./utils/parseRanges');
 
@@ -22,6 +23,7 @@ const slicePdf = async (inputPath, outputDirectory, options) => {
   }
   inputPath = path.resolve(inputPath);
   info(`Slicing PDF ${inputPath}  ->  ${outputDirectory}`);
+  mkdirp.sync(outputDirectory)
   if (!fs.existsSync(inputPath)) {
     throw new Error(`Input path do not exists: ${inputPath}`);
   }
@@ -53,18 +55,21 @@ const slicePdf = async (inputPath, outputDirectory, options) => {
       const fromId = fromPage - 1;
       const toId = toPage - 1;
       const count = (toId - fromId) + 1;
+      const formatPageNo = pageNo =>padLeft(pageNo, Math.ceil(Math.log10(numPages)), '0')
+
       const chunkPath = path.join(
         outputDirectory,
         count === 1
-          ? `${o.outputNamePrefix}${padLeft(fromPage,o.outputNameLeadingZeros,'0')}.${o.outputExtension}`
-          : `${o.outputNamePrefix}${padLeft(fromPage, o.outputNameLeadingZeros, '0')}-${toPage}.${o.outputExtension}`,
+          ? `${o.outputNamePrefix}${formatPageNo(fromPage)}.${o.outputExtension}`
+          : `${o.outputNamePrefix}${formatPageNo(fromPage)}-${formatPageNo(toPage)}.${o.outputExtension}`,
       );
       const isExisting = fs.existsSync(chunkPath);
       info(
-        `slicePdf ${inputPath}[${padLeft(from, Math.ceil(Math.log10(numPages)), '0')}-${padLeft(to, Math.ceil(Math.log10(numPages)), '0')}] -> ${chunkPath} (${numPages} pages)`
+        `[slicePdf] ${inputPath}[${formatPageNo(from)}-${formatPageNo(to)}] -> ${chunkPath} (${numPages} pages)`
       );
       if (isExisting && o.overwrite) {
         fs.unlinkSync(chunkPath);
+        warn(`[slicePdf[ existing ${chunkPath} will be replaced`)
       }
       const result = {
         chunkPath,
@@ -76,12 +81,17 @@ const slicePdf = async (inputPath, outputDirectory, options) => {
       };
 
       if ((!isExisting) || o.overwrite) {
-        const pdfWriter = hummus.createWriter(chunkPath);
-        for (let i = fromId; i < toId + 1; i += 1) {
-          // console.error('from', fromId, 'i', i, 'to', toId, 'chunkPath', chunkPath);
-          pdfWriter.createPDFCopyingContext(pdfReader).appendPDFPageFromPDF(i);
+        try {
+          const pdfWriter = hummus.createWriter(chunkPath);
+          for (let i = fromId; i < toId + 1; i += 1) {
+            // console.error('from', fromId, 'i', i, 'to', toId, 'chunkPath', chunkPath);
+            pdfWriter.createPDFCopyingContext(pdfReader).appendPDFPageFromPDF(i);
+          }
+          pdfWriter.end();
+        } catch (err) {
+          warn(`Problematic chunk path is: ${chunkPath}`)
+          throw err;
         }
-        pdfWriter.end();
       }
       return result;
     },

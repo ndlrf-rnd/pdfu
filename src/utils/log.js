@@ -2,13 +2,13 @@
 const debug = console.debug;
 
 // eslint-disable-next-line no-console
-const info = console.info;
+const info = (...args)=>process.stdout.write(`${args.join(' ')}\n`);
 
 // eslint-disable-next-line no-console
-const warn = console.warn;
+const warn = (...args)=>process.stderr.write(`WARNING: ${args.join(' ')}\n`);
 
 // eslint-disable-next-line no-console
-const error = console.error;
+const error = (...args)=>process.stderr.write(`ERROR: ${args.join(' ')}\n`);
 
 // eslint-disable-next-line no-console
 const log = (...args) => (process.env.DEBUG ? console.debug(...args) : null);

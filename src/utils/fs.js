@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const cp = require('child_process');
+const glob = require('glob');
 
 const mkdirp = require('mkdirp');
 const flatten = require('lodash.flatten');
@@ -166,4 +167,5 @@ module.exports = {
   mkdirpSync,
   runCommand,
   mkdirpAsync,
+  glob,
 };

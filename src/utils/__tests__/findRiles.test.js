@@ -2,7 +2,7 @@ const path = require('path');
 const {cpMap} = require('../chainPromises');
 const {findFiles} = require('../fs');
 
-test('findPdfs', async (done) => {
+test('findPdfs', async () => {
   expect.assertions(6);
   await cpMap(
     [
@@ -15,7 +15,10 @@ test('findPdfs', async (done) => {
       expect(
         (await findFiles(p, 'pdf')).map(p => path.basename(p))
       ).toEqual(
-        ['page-1-42.pdf']
+        [
+          'page-01-42-compact.pdf',
+          'page-01-42.pdf',
+        ]
       );
     }
   );
@@ -33,7 +36,9 @@ test('findPdfs', async (done) => {
       'txt'
     )).map(p => path.basename(p))
   ).toEqual(
-    ['page-1-42.pdf']
+    [
+      'page-01-42-compact.pdf',
+      'page-01-42.pdf'
+    ]
   );
-  done()
 });
